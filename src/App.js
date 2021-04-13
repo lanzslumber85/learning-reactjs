@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+// import "./css/App.css";
+import React, { Component } from "react";
+import Footer from "./components/footer";
+import Header from "./components/header";
+import NewsList from "./components/news_list";
+import JSON from "./db.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            news: JSON,
+            footerText: "© 2021 by Azlan.Wonderwise",
+        };
+    }
+
+    render() {
+        const { news, footerText } = this.state;
+        return (
+            <>
+                <Header />
+                <NewsList news={news} />
+                <Footer footerText={footerText} />
+            </>
+        );
+    }
 }
 
 export default App;
