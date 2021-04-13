@@ -2,21 +2,15 @@ import React, { Component } from "react";
 import "../css/header.css";
 
 class Header extends Component {
-    state = {
-        keywords: "",
-    };
-
-    inputChange = event => {
-        this.setState({
-            keywords: event.target.value,
-        });
-    };
+    state = {};
 
     render() {
+        const { keywords } = this.props;
+
         return (
             <header className="header">
                 <div className="logo">Logo:</div>
-                <input onChange={e => this.inputChange(e)} />
+                <input onChange={keywords} />
             </header>
         );
     }

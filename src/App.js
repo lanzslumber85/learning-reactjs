@@ -11,15 +11,27 @@ class App extends Component {
         this.state = {
             news: JSON,
             footerText: "© 2021 by Azlan.Wonderwise",
+            filtered: [],
         };
     }
 
+    getKeywords = event => {
+        let keywords = event.target.value;
+        let filtered = this.state.news.filter(item => {
+            return item.title.indexOf(keywords) > -1;
+        });
+        this.setState({
+            filtered,
+        });
+    };
+
     render() {
-        const { news, footerText } = this.state;
+        const { news, footerText, filtered } = this.state;
+
         return (
             <>
-                <Header />
-                <NewsList news={news} />
+                <Header keywords={this.getKeywords} />
+                <NewsList news={filtered.length === 0 ? news : filtered} />
                 <Footer footerText={footerText} />
             </>
         );
